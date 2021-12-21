@@ -1,0 +1,76 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.springframework.boot' version '2.5.5'
+    id 'jacoco'
+	id 'java'
+}
+
+group = 'app'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+    integrationTest {
+        compileClasspath += main.output
+        runtimeClasspath += main.output
+    }
+}
+
+dependencies {
+    implementation 'org.apache.poi:poi:5.1.0'
+    implementation 'org.apache.poi:poi-ooxml:5.1.0'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.5.13'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    integrationTestImplementation sourceSets.main.runtimeClasspath
+    integrationTestImplementation sourceSets.test.runtimeClasspath
+}
+
+jacoco {
+    toolVersion = '0.8.7'
+}
+
+jacocoTestReport {
+    dependsOn test
+    finalizedBy jacocoTestCoverageVerification
+    reports {
+        xml.required = true
+    }
+}
+
+jacocoTestCoverageVerification {
+    dependsOn test
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+
+test {
+    finalizedBy jacocoTestReport
+	useJUnitPlatform()
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+task integrationTest(type: Test) {
+    description = 'Runs the integration tests.'
+    group = 'Verification'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
