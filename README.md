@@ -4,6 +4,23 @@ Working with **Excel** documents is a frequently used feature in a software appl
 [Apache POI](https://poi.apache.org/) is a popular open source library run by the Apache Software Foundation which is developed for reading and writing files in Microsoft Office formats, such as Word, PowerPoint, and Excel.
 This project demonstrates the use of the **Apache POI** for working with **Excel** spreadsheets.
 
+## Overview
+
+The Apache POI library supports both `.xls` and `.xlsx` files and is a more complex library than other Java libraries for working with Excel files.
+It provides the *Workbook* interface for modeling an *Excel* file, and the *Sheet*, *Row* and *Cell* interfaces that model the elements of an Excel file, as well as implementations of each interface for both file formats.
+When working with the newer `.xlsx` file format, you would use the *XSSFWorkbook*, *XSSFSheet*, *XSSFRow* and *XSSFCell* classes.
+
+In common business scenarios, you need to write a list of business entities in an Excel file.
+The first row is reserved for column headers and, the list of business entities, comes in the next rows.
+
+| Id | Name | Quantity | Unit | Price | Currency | Expiration Date |
+|----|------|----------|------|-------|----------|-----------------|
+| 1  | Beer | 0.33     | L    | 0.50  | €        | 2024-12-31      |
+| 2  | Milk | 1.0      | L    | 0.65  | €        | 2022-12-31      |
+
+Another common scenario is the reverse operation. Sometimes, it is necessary to import data into the system from an Excel file.
+In this case, if you follow the previous template, you just need to exclude the first row and read the remaining rows.
+
 ## Project structure
 
 This project was generated with [Spring Initializr](https://start.spring.io/).
