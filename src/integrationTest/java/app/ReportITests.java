@@ -30,7 +30,7 @@ public class ReportITests {
 
     @Test
     @DisplayName("/write (POST)")
-    void getAllUsers() throws Exception {
+    void writeReport() throws Exception {
         String products =
             "[{\"id\":1,\"name\":\"Product Name\",\"quantity\":1.0,\"unit\":\"L\"," +
             "\"price\":5.0,\"currency\":\"€\",\"expirationDate\":\"2021-12-12\"}]";
@@ -44,7 +44,7 @@ public class ReportITests {
 
     @Test
     @DisplayName("/read (POST)")
-    void addUser() throws Exception {
+    void readReport() throws Exception {
         Workbook workbook = new XSSFWorkbook().createSheet("Products").getWorkbook();
         byte[] byteArray = mapToOutputStream(workbook).toByteArray();
         MockMultipartFile file = new MockMultipartFile("file", "Report.xlsx", MULTIPART_FORM_DATA_VALUE, byteArray);
