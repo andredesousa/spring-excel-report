@@ -1,4 +1,4 @@
-# Spring application with Apache POI
+# Read/Write Excel files with Spring and Apache POI
 
 Working with **Excel** documents is a frequently used feature in a software application.
 [Apache POI](https://poi.apache.org/) is a popular open source library run by the Apache Software Foundation which is developed for reading and writing files in Microsoft Office formats, such as Word, PowerPoint, and Excel.
